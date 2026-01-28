@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensch ärgere Dich nicht - Offizielle Regeln</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/board.css">
+    <link rel="stylesheet" href="css/dice.css">
+    <link rel="stylesheet" href="css/accordions.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+    <div class="game-container">
+        <header>
+            <h1><i class="fas fa-dice"></i> Mensch ärgere Dich nicht</h1>
+            <div class="subtitle">Das klassische Brettspiel - Offizielle Regeln</div>
+            <div class="subtitle">Für 2-4 Spieler</div>
+        </header>
+
+        <!-- Spielerauswahl -->
+        <div id="player-selection" class="player-selection">
+            <h3><i class="fas fa-users"></i> Spiel einrichten</h3>
+            <div class="player-count-selector">
+                <button class="player-count-btn" data-count="2">
+                    <i class="fas fa-user-friends"></i> 2 Spieler
+                </button>
+                <button class="player-count-btn" data-count="3">
+                    <i class="fas fa-user-friends"></i> 3 Spieler
+                </button>
+                <button class="player-count-btn selected" data-count="4">
+                    <i class="fas fa-users"></i> 4 Spieler
+                </button>
+            </div>
+            <div class="player-names">
+                <input type="text" id="player1-name" class="player-name-input" placeholder="Spieler 1 Name"
+                    value="Spieler 1 (Blau)">
+                <input type="text" id="player2-name" class="player-name-input" placeholder="Spieler 2 Name"
+                    value="Spieler 2 (Rot)">
+                <input type="text" id="player3-name" class="player-name-input" placeholder="Spieler 3 Name"
+                    value="Spieler 3 (Gelb)">
+                <input type="text" id="player4-name" class="player-name-input" placeholder="Spieler 4 Name"
+                    value="Spieler 4 (Grün)">
+            </div>
+            <button id="start-game-btn">
+                <i class="fas fa-play-circle"></i> Spiel starten
+            </button>
+        </div>
+
+        <!-- Hauptspielbereich (wird später angezeigt) -->
+        <div class="main-layout" style="display: none;">
+            <!-- Linke Spalte: Spielfeld und Startphase -->
+            <div class="game-column">
+                <!-- Startphase -->
+                <div id="start-phase" class="start-phase">
+                    <h3><i class="fas fa-flag-checkered"></i> Startphase - Spielreihenfolge bestimmen</h3>
+                    <p>Jede*r Spieler*in würfelt einmal. Die höchste Augenzahl beginnt.</p>
+                    <div id="start-dice-container"></div>
+                    <button id="start-roll-btn" style="margin-top: 20px;">
+                        <i class="fas fa-dice"></i> Für Startreihenfolge würfeln
+                    </button>
+                </div>
+
+                <!-- Spielbrett -->
+                <div class="game-board-container">
+                    <div class="game-board">
+                        <svg id="game-board" width="100%" height="100%" viewBox="0 0 11 11"
+                            preserveAspectRatio="xMidYMid meet">
+                            <!-- Spielfeld wird dynamisch erzeugt -->
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rechte Spalte: Akkordeons -->
+            <div class="accordions-column">
+                <!-- Akkordeon 1: Spielsteuerung -->
+                <div class="accordion-container" id="controls-accordion">
+                    <div class="accordion-header" id="controls-header">
+                        <span><i class="fas fa-gamepad"></i> Spielsteuerung</span>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content" id="controls-content">
+                        <div class="game-controls-content">
+                            <div class="dice-container">
+                                <div id="dice-3d" class="dice-3d">
+                                    <!-- 3D-Würfel wird dynamisch erzeugt -->
+                                </div>
+                                <button id="roll-btn" disabled>
+                                    <i class="fas fa-dice"></i> Würfeln
+                                </button>
+                            </div>
+                            <div id="roll-counter" class="roll-counter"></div>
+                            <div id="game-status" class="game-status">
+                                Regel 1: Bitte würfeln um die Startreihenfolge zu bestimmen
+                            </div>
+                            <div class="player-info" id="player-info">
+                                <!-- Spieler werden dynamisch erzeugt -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Akkordeon 2: Spieloptionen (zusammengeführt aus Spielstand und Verlauf) -->
+                <div class="accordion-container" id="options-accordion">
+                    <div class="accordion-header" id="options-header">
+                        <span><i class="fas fa-cogs"></i> Spieloptionen</span>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content" id="options-content">
+                        <div class="game-options-content">
+                            <button id="restart-btn">
+                                <i class="fas fa-redo"></i> Spiel neustarten
+                            </button>
+                            <div class="button-row">
+                                <button id="save-game-btn">
+                                    <i class="fas fa-save"></i> Spiel speichern
+                                </button>
+                                <button id="load-game-btn">
+                                    <i class="fas fa-folder-open"></i> Spiel laden
+                                </button>
+                            </div>
+                            <div class="button-row">
+                                <button id="undo-btn" disabled>
+                                    <i class="fas fa-step-backward"></i> Zug rückgängig
+                                </button>
+                                <button id="redo-btn" disabled>
+                                    <i class="fas fa-step-forward"></i> Zug wiederholen
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Akkordeon 3: Statistik -->
+                <div class="accordion-container" id="stats-accordion">
+                    <div class="accordion-header" id="stats-header">
+                        <span><i class="fas fa-chart-bar"></i> Spielstatistik</span>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content" id="statistics-content">
+                        <!-- Statistik wird dynamisch eingefügt -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Spielregeln -->
+        <div class="rules-section" id="rules-section">
+            <div class="rules-header">
+                <h2><i class="fas fa-book-open"></i> Offizielle Spielregeln</h2>
+                <p>Alle Regeln im Überblick - Klicken Sie auf eine Regel um Details zu sehen</p>
+            </div>
+
+            <div class="rules-accordion" id="rules-accordion">
+                <!-- Regeln werden dynamisch eingefügt -->
+            </div>
+
+            <div class="rules-source">
+                <p>Regeln gemäß: <a href="https://www.asta.uni-bremen.de/spielregelnturnier/" target="_blank"
+                        rel="noopener noreferrer">https://www.asta.uni-bremen.de/spielregelnturnier/</a></p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <h3><i class="fas fa-dice"></i> Mensch ärgere Dich nicht</h3>
+                <p>Das klassische Brettspiel in digitaler Form</p>
+                <p>Entwickelt für beste Spielerfahrung mit allen offiziellen Regeln</p>
+
+                <div class="footer-links">
+                    <a href="#rules-section" class="footer-link">
+                        <i class="fas fa-book"></i> Spielregeln
+                    </a>
+                </div>
+
+                <div class="copyright">
+                    <p>&copy; 2026 Mensch ärgere Dich nicht</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Spielstand-Dialog -->
+    <div id="save-dialog" class="save-dialog">
+        <div class="save-dialog-content">
+            <h3 id="dialog-title"><i class="fas fa-save"></i> Spielstand speichern</h3>
+            <div id="save-slots-container">
+                <!-- Save-Slots werden dynamisch erzeugt -->
+            </div>
+            <div class="save-dialog-actions">
+                <button id="save-cancel-btn">Abbrechen</button>
+                <button id="dialog-action-btn">Speichern</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div class="loading-spinner" id="loading-spinner">
+        <div class="spinner"></div>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>

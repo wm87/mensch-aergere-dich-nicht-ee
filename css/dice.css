@@ -1,0 +1,173 @@
+/* Dice Container */
+.dice-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+/* 3D Dice Styling */
+.dice-3d {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+    cursor: pointer;
+}
+
+.dice-3d .face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: white;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.2);
+    backface-visibility: hidden;
+}
+
+.dice-3d .face-1 {
+    transform: translateZ(50px);
+}
+
+.dice-3d .face-2 {
+    transform: rotateY(90deg) translateZ(50px);
+}
+
+.dice-3d .face-3 {
+    transform: rotateX(90deg) translateZ(50px);
+}
+
+.dice-3d .face-4 {
+    transform: rotateX(-90deg) translateZ(50px);
+}
+
+.dice-3d .face-5 {
+    transform: rotateY(-90deg) translateZ(50px);
+}
+
+.dice-3d .face-6 {
+    transform: rotateY(180deg) translateZ(50px);
+}
+
+.face-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    width: 70px;
+    height: 70px;
+    gap: 5px;
+}
+
+.dot {
+    width: 18px;
+    height: 18px;
+    background: #333;
+    border-radius: 50%;
+}
+
+.dice-3d.rolling {
+    animation: rollDice 0.8s ease-out;
+}
+
+@keyframes rollDice {
+    0% {
+        transform: rotateX(0) rotateY(0);
+    }
+
+    25% {
+        transform: rotateX(180deg) rotateY(90deg);
+    }
+
+    50% {
+        transform: rotateX(360deg) rotateY(180deg);
+    }
+
+    75% {
+        transform: rotateX(540deg) rotateY(270deg);
+    }
+
+    100% {
+        transform: rotateX(720deg) rotateY(360deg);
+    }
+}
+
+/* Roll Button */
+#roll-btn {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    background: linear-gradient(to right, #4CAF50, #45a049);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#roll-btn:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    background: linear-gradient(to right, #45a049, #3d8b40);
+}
+
+#roll-btn:disabled {
+    background: #cccccc;
+    transform: none;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+/* Start-Roll Button */
+#start-roll-btn {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    background: linear-gradient(to right, #2196F3, #1976D2);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px auto 0;
+    min-width: 280px;
+}
+
+#start-roll-btn:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    background: linear-gradient(to right, #1976D2, #1565C0);
+}
+
+#start-roll-btn:disabled {
+    background: #cccccc;
+    transform: none;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+.roll-counter {
+    color: #666;
+    font-size: 1rem;
+    text-align: center;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin: 10px;
+}

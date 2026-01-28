@@ -5,14 +5,48 @@
 
 # 🎲 Mensch ärgere Dich nicht – Extended-Edition
 
+## 📑 Inhaltsverzeichnis
+
+* [Projektübersicht](#-projektübersicht)
+* [Warum dieses Projekt?](#-warum-dieses-projekt)
+* [Danksagung](#-danksagung)
+* [Hauptfunktionen](#-hauptfunktionen)
+
+  * [Kernspielmechanik](#-kernspielmechanik)
+  * [Datenpersistenz](#-datenpersistenz)
+  * [Benutzererfahrung (UX)](#-benutzererfahrung-ux)
+  * [Technische Features](#-technische-features)
+* [Technologie-Stack](#-technologie-stack)
+* [Projektstruktur](#-projektstruktur)
+* [Besondere Implementierungsdetails](#-besondere-implementierungsdetails)
+* [Installation & Ausführung](#-installation--ausführung)
+* [Code-Qualität & Best Practices](#-code-qualität--best-practices)
+* [Herausforderungen & Lösungen](#-herausforderungen--lösungen)
+* [Mögliche Erweiterungen](#-mögliche-erweiterungen)
+* [Screenshot](#-screenshot)
+* [Lizenz](#-lizenz)
+* [Feedback & Beiträge](#-feedback--beiträge)
+
 ---
 
 ## 📋 Projektübersicht
 
-Eine vollständige digitale Implementierung des klassischen deutschen Brettspiels **„Mensch ärgere Dich nicht“** mit allen offiziellen Turnierregeln.
-Das Projekt demonstriert fortgeschrittene Frontend-Entwicklung mit besonderem Fokus auf **Spielmechanik**, **UX-Design** und **State-Management** – komplett ohne externe Abhängigkeiten.
+Eine vollständige digitale Implementierung des klassischen deutschen Brettspiels „Mensch ärgere Dich nicht“ mit allen offiziellen Turnierregeln.
+Das Projekt demonstriert fortgeschrittene Frontend-Entwicklung mit besonderem Fokus auf Spielmechanik, UX-Design und State-Management – komplett ohne externe Abhängigkeiten.
 
----
+## 🧲 Warum dieses Projekt?
+
+* Dieses Projekt wurde bewusst als komplexes, regelgetriebenes Browser-Spiel umgesetzt, um reale Herausforderungen moderner Frontend-Entwicklung praxisnah abzubilden:
+
+* Komplexe Business-Logik: Umsetzung und Validierung eines umfangreichen Regelwerks
+
+* State-Management ohne Frameworks: Saubere Trennung von Spielzustand, UI und Persistenz
+
+* UX-Fokus: Intuitive Bedienung trotz hoher funktionaler Komplexität
+
+* Performance & Wartbarkeit: Effiziente DOM-Updates und modulare Architektur
+
+* Das Ergebnis ist kein Demo-Projekt, sondern eine vollwertige Anwendung, die Architekturentscheidungen, Code-Qualität und Produktdenken sichtbar macht.
 
 ## 🙏 Danksagung
 
